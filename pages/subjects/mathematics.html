@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics Activities | Creativity Generation Schools</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #006666;
+            --accent-color: #CC9900;
+            --background-light: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-dark: #1a2a44;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--background-light); 
+            color: var(--text-dark); 
+            line-height: 1.7;
+        }
+
+        header { 
+            background-color: #006666; 
+            color: white; 
+            padding: 1rem 2rem; 
+            text-align: center; 
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+            opacity: 0.3;
+        }
+
+        .logo-section { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 1rem; 
+            position: relative;
+        }
+
+        .logo-container { 
+            background-color: white; 
+            border-radius: 50%; 
+            padding: 20px; 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-container img { 
+            width: 140px; 
+            height: auto; 
+            display: block; 
+        }
+
+        .logo-section h1 { 
+            margin: 0; 
+            font-size: 2rem; 
+            color: var(--accent-color); 
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        nav { 
+            margin-top: 1.5rem; 
+        }
+
+        nav ul { 
+            list-style: none; 
+            display: flex; 
+            justify-content: center; 
+            gap: 2rem; 
+            margin: 0; 
+            padding: 0; 
+        }
+
+        nav a { 
+            color: white; 
+            text-decoration: none; 
+            padding: 0.7rem 1.5rem; 
+            border-radius: 25px; 
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-color);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        nav a:hover::after {
+            transform: scaleX(1);
+        }
+
+        nav a:hover { 
+            background-color: rgba(204, 153, 0, 0.1); 
+            color: var(--accent-color);
+        }
+
+        .hero { 
+            background: linear-gradient(to bottom, #006666, #e8f5e8); 
+            color: white; 
+            text-align: center; 
+            padding: 2rem; 
+        }
+
+        .hero h2 { 
+            margin: 0; 
+            font-size: 2.5rem; 
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 1rem auto;
+        }
+
+        .section { 
+            padding: 4rem 2rem; 
+            max-width: 1400px; 
+            margin: 0 auto; 
+        }
+
+        .section h2 { 
+            color: var(--primary-color); 
+            text-align: center; 
+            margin-bottom: 3rem; 
+            font-size: 2.3rem;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            display: block;
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+
+        .cards-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 2.5rem; 
+            padding: 0 1rem;
+        }
+
+        .card { 
+            border: none; 
+            border-radius: 15px; 
+            padding: 2rem; 
+            text-align: center; 
+            background: var(--card-bg); 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: all 0.5s ease;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            min-height: 340px; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent-color);
+            opacity: 0.7;
+        }
+
+        .card.visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        .card i { 
+            font-size: 3.5rem; 
+            color: var(--primary-color); 
+            margin-bottom: 1.5rem; 
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover i {
+            transform: scale(1.1);
+        }
+
+        .card h3 { 
+            color: var(--primary-color); 
+            margin-bottom: 1rem; 
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .card .content { 
+            flex-grow: 1; 
+        }
+
+        .btn-secondary { 
+            background-color: var(--primary-color); 
+            color: white; 
+            padding: 0.9rem 2rem; 
+            text-decoration: none; 
+            border-radius: 25px; 
+            font-weight: 500;
+            display: inline-block; 
+            transition: all 0.3s ease;
+            min-width: 160px; 
+            text-align: center;
+            margin-top: auto; 
+        }
+
+        .btn-secondary:hover { 
+            background-color: var(--accent-color); 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .vision { 
+            background: linear-gradient(to right, #e8f5e8, #d4ece8); 
+            padding: 3rem 2rem; 
+            text-align: center; 
+            margin: 4rem 2rem; 
+            border-radius: 15px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .vision h3 { 
+            color: var(--primary-color); 
+            font-size: 1.8rem; 
+            margin-bottom: 1.5rem; 
+            font-weight: 600;
+        }
+
+        .vision p { 
+            font-size: 1.1rem; 
+            max-width: 900px; 
+            margin: 0 auto 1.5rem; 
+            line-height: 1.8;
+        }
+
+        footer { 
+            background: linear-gradient(135deg, var(--primary-color), #004d4d); 
+            color: white; 
+            text-align: center; 
+            padding: 2rem; 
+            margin-top: 4rem; 
+            font-size: 1rem;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        @media (max-width: 768px) { 
+            .cards-grid { grid-template-columns: 1fr; } 
+            .hero h2 { font-size: 2rem; } 
+            .logo-section h1 { font-size: 1.6rem; } 
+            .logo-container img { width: 110px; } 
+            nav ul { flex-direction: column; gap: 1rem; }
+            .btn-secondary { min-width: 140px; } 
+            .card { min-height: 300px; }
+            .section h2 { font-size: 2rem; }
+            .vision { margin: 2rem 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero { padding: 2rem 1rem; }
+            .section { padding: 2rem 1rem; }
+            .card { padding: 1.5rem; }
+            .vision p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-section">
+            <div class="logo-container">
+                <img src="https://cgschool.com.sa/wp-content/uploads/2025/04/logo-3-1.webp" alt="Creativity Generation Schools Logo">
+            </div>
+            <h1>Creativity Generation Schools - American International Section</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../subjects.html">Subjects</a></li>
+                <li><a href="../student-guidance.html">Guidance</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Mathematics Activities</h2>
+        <p>Explore reports, photos, videos, and plans from our problem-solving challenges and math projects.</p>
+    </section>
+
+    <section class="section">
+        <h2>Mathematics Documentation</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="content">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Activity Reports</h3>
+                    <p>Detailed summaries and outcomes of math activities.</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1_2yyzu_JmpA72XxpOnTSisYgIJWT9khr?usp=drive_link" target="_blank" class="btn-secondary">View</a>
+            </div>
+
+            <div class="card">
+                <div class="content">
+                    <i class="fas fa-camera"></i>
+                    <h3>Photos</h3>
+                    <p>High-quality images capturing math class moments and events.</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1--XV4yfLAyF8pXvN76ANhprlwKdIPVAE?usp=drive_link" target="_blank" class="btn-secondary">View</a>
+            </div>
+
+            <div class="card">
+                <div class="content">
+                    <i class="fas fa-video"></i>
+                    <h3>Videos</h3>
+                    <p>Video highlights and recordings of math competitions and lessons.</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/11Agu8Cw2e5ww8tWs2RpALlXnCxvQem-g?usp=drive_link" target="_blank" class="btn-secondary">View</a>
+            </div>
+
+            <div class="card">
+                <div class="content">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>Activity Plans</h3>
+                    <p>Lesson plans and preparation guides for math sessions.</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1gDnhp5GhjoPR6KL4pIYeKBzJmBlGC9TT?usp=drive_link" target="_blank" class="btn-secondary">View</a>
+            </div>
+
+            <div class="card">
+                <div class="content">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Test Practice</h3>
+                    <p>Practice materials and exercises to prepare for math assessments.</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1Dg07JlTumBdw6yGzRpCoYeD_UGh5xDie?usp=drive_link" target="_blank" class="btn-secondary">View</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="vision">
+        <h3>Our Vision & Mission</h3>
+        <p><strong>Vision:</strong> To prepare a creative generation, proud of its faith and identity, equipped with knowledge and skills, shaping the future and serving both the nation and humanity — from the heart of Makkah to the world.</p>
+        <p><strong>Mission:</strong> We provide a comprehensive, student-centered educational system that instills a love of learning and develops their leadership and creative abilities in a safe and stimulating environment, led by qualified educators and programs rooted in values, combining academic excellence, character building, and future readiness.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Creativity Generation Schools. All rights reserved. | Contact: info@creativityschools.edu</p>
+    </footer>
+
+    <script>
+        // Fade-in Animation for Cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 200);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            cards.forEach(card => observer.observe(card));
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
